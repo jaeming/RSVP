@@ -1,4 +1,4 @@
-= form_for(@guest) do |f|
+= form_for [@event, @guest] do |f|
   - if @guest.errors.any?
     #error_explanation
       %h2

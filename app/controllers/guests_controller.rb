@@ -18,8 +18,13 @@ class GuestsController < ApplicationController
   end
 
   def create
-    @guest = Guest.create!(guest_params)
-    redirect_to @guest
+    @event = Event.find(params[:event_id])
+    @guest = @event.guests.build(guest_params.merge(event: @event))
+    if @guest.save
+      render :recieved
+    else
+      render :error
+    end
   end
 
   def update

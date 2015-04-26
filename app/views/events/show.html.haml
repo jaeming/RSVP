@@ -22,5 +22,19 @@
   = @event.image
 - if current_user
   = link_to 'Edit', edit_event_path(@event)
-%br  	
+%br
 = link_to 'Back', events_path
+- unless current_user
+  %hr
+  %h3 Confirm now:
+  - @guest ||= @event.guests.new
+  = render partial: 'guests/form'
+%hr
+%h3 Who's coming?
+%br
+- if current_user
+  - if @event.guests.any?
+    = render partial: 'guests/guest', collection: @event.guests
+  - else
+    %p Well, so far, no one...
+    %p Oh...you better start inviting people...

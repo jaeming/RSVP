@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   get 'home/index'
   root 'home#index'
 
-  resources :guests
-  resources :events
+  resources :events do
+    resources :guests
+  end
+
 
   namespace :api do
     resources :guests, only: [:create]
