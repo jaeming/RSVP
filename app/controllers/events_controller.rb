@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   respond_to :html
-  before_action :authenticate_user!, only: [:index, :create, :update, :destroy ]
+  before_action :authenticate_user!, except: :show
 
   def index
     @events = current_user.events
