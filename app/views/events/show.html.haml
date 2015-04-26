@@ -1,0 +1,25 @@
+%p#notice= notice
+%p
+  %strong Title:
+  = @event.title
+%p
+  %strong Description:
+  = @event.description
+%p
+  %strong Theme:
+  = @event.theme
+%p
+  %strong Date:
+  = @event.date
+%p
+  %strong Host:
+  = @event.host
+%p
+  %strong Location:
+  = @event.location
+%p
+  %strong Image:
+  = @event.image
+= link_to 'Edit', edit_event_path(@event)
+|
+\#{link_to 'Back', events_path}
