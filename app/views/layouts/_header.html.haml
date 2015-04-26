@@ -31,4 +31,4 @@
                   %a{:href => "../"} Account info
                 %li.divider
                 %li
-                  %a{:href => "../"} Sign out
+                  = link_to "Sign out", destroy_user_session_path, method: :delete
