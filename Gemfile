@@ -4,6 +4,7 @@ gem 'rack-cors', :require => 'rack/cors'
 gem "haml-rails"
 gem 'bootstrap-sass'
 gem 'bootswatch-rails'
+gem 'devise'
 gem 'rails', '4.2.1'
 gem 'sqlite3'
 gem 'sass-rails', '~> 5.0'
