@@ -1,0 +1,34 @@
+!!!
+%html
+  %head
+    %title Rsvp
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+
+    .navbar.navbar-default.navbar-fixed-top
+      .container
+        .navbar-header
+          %a.navbar-brand{:href => "../"} RSVP
+          %button.navbar-toggle{"data-target" => "#navbar-main", "data-toggle" => "collapse", :type => "button"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+        #navbar-main.navbar-collapse.collapse
+          %ul.nav.navbar-nav
+            %li
+              %a{:href => "../events/"} events
+            %li
+              %a{:href => "http://news.bootswatch.com"} guests
+          %ul.nav.navbar-nav.navbar-right
+            %li.dropdown
+              %a#themes.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                Account
+                %span.caret
+              %ul.dropdown-menu{"aria-labelledby" => "themes"}
+                %li
+                  %a{:href => "../"} Account info
+                %li.divider
+                %li
+                  %a{:href => "../"} Sign out
