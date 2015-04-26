@@ -16,7 +16,8 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
+    if current_user
+      @event = current_user.events.new(event_params)
 
     respond_to do |format|
       if @event.save
@@ -26,6 +27,10 @@ class EventsController < ApplicationController
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
+    end
+
+    else
+      redirect_to events_url, :alert => 'Please sign in or sign up first.'
     end
   end
 
