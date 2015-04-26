@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_user_event, only: [:edit, :update, :destroy]
 
   def index
     if current_user
@@ -10,6 +10,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @event = Event.find(params[:id])
   end
 
   def new
@@ -17,11 +18,16 @@ class EventsController < ApplicationController
   end
 
   def edit
+    if current_user
+
+    else
+      not_authenticated
+    end
   end
 
   def create
     if current_user
-      @event = current_user.events.new(event_params)
+      @event.new
 
       respond_to do |format|
         if @event.save
@@ -40,7 +46,6 @@ class EventsController < ApplicationController
 
   def update
     if current_user
-      @event = current_user.events.find(params[:id])
 
       respond_to do |format|
         if @event.update(event_params)
@@ -59,8 +64,8 @@ class EventsController < ApplicationController
 
   def destroy
     if current_user
-      @event = current_user.events.find(params[:id])
       @event.destroy!
+
       respond_to do |format|
         format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
         format.json { head :no_content }
@@ -76,8 +81,8 @@ class EventsController < ApplicationController
       redirect_to root_path, :alert => 'Please sign in or sign up first.'
     end
 
-    def set_event
-      @event = Event.find(params[:id])
+    def set_user_event
+      @event = current_user.events.find(event_params)
     end
 
     def event_params
