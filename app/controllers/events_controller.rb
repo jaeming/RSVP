@@ -2,7 +2,11 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    @events = Event.all
+    if current_user
+      @events = current_user.events
+    else
+      not_authenticated
+    end
   end
 
   def show
@@ -69,7 +73,7 @@ class EventsController < ApplicationController
   private
 
     def not_authenticated
-      redirect_to events_url, :alert => 'Please sign in or sign up first.'
+      redirect_to root_path, :alert => 'Please sign in or sign up first.'
     end
 
     def set_event
