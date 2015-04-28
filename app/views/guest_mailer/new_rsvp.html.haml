@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+%html{:lang => "en"}
+%head
+  %meta{:charset => "UTF-8"}/
+  %title RSVP Confirmed
+%body
+  %h1 RSVP has been confirmed
+  %h2 By: #{@guest.name}
+  %hr/
+  %h4 #{@event.title}
+  %p #{@event.description}
+  %p #{@event.date}
+  %p #{@event.host}
+  %p #{@event.location}
