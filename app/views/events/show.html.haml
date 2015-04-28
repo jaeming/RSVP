@@ -1,40 +1,36 @@
-%p#notice= notice
-%p
-  %strong Title:
-  = @event.title
-%p
-  %strong Description:
-  = @event.description
-%p
-  %strong Theme:
-  = @event.theme
-%p
-  %strong Date:
-  = @event.date
-%p
-  %strong Host:
-  = @event.host
-%p
-  %strong Location:
-  = @event.location
-%p
-  %strong Image:
-  = @event.image
-- if current_user
-  = link_to 'Edit', edit_event_path(@event)
-%br
-= link_to 'Back', events_path
-- unless current_user
+.container
+  %p#notice= notice
+  %p
+    %strong Title:
+    = @event.title
+  %p
+    %strong Description:
+    = @event.description
+  %p
+    %strong Date:
+    = @event.date
+  %p
+    %strong Host:
+    = @event.host
+  %p
+    %strong Location:
+    = @event.location
+  - if current_user
+    = link_to 'Edit', edit_event_path(@event), class: "btn btn-info btn-sm"
+    = link_to 'Delete', @event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm"
+  %br
+  = link_to 'Back', events_path
+  - unless current_user
+    %hr
+    %h3 Confirm now:
+    - @guest ||= @event.guests.new
+    = render partial: 'guests/form'
   %hr
-  %h3 Confirm now:
-  - @guest ||= @event.guests.new
-  = render partial: 'guests/form'
-%hr
-%h3 Who's coming?
-%br
-- if current_user
-  - if @event.guests.any?
-    = render partial: 'guests/guest', collection: @event.guests
-  - else
-    %p Well, so far, no one...
-    %p Oh...you better start inviting people...
+  %h3 Who's coming?
+  %br
+  - if current_user
+    - if @event.guests.any?
+      = render partial: 'guests/guest', collection: @event.guests
+    - else
+      %p Well, so far, no one...
+      %p Oh...you better start inviting people...
