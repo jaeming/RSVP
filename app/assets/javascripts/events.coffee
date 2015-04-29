@@ -5,8 +5,8 @@
 $(document).ready ->
 
   hideNotice = ->
-    $notice = $('.notice')
-    $notice.slideUp 'slow'
+    $notice = $('#notice')
+    $notice.fadeOut 'slow'
     return
 
   setTimeout hideNotice, 3000
