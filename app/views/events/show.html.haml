@@ -1,16 +1,14 @@
 .container
   %p#notice= notice
-  %p
-    %strong Title:
+  %h2
     = @event.title
   %p
-    %strong Description:
     = @event.description
   %p
     %strong Date:
-    @event.date.strftime("%I:%M%p, %A, %B %d, %Y")
+    = @event.date.strftime("%I:%M%p, %A, %B %d, %Y")
   %p
-    %strong Host:
+    %strong Hosted by:
     = @event.host
   %p
     %strong Location:
