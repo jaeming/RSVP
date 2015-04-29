@@ -15,6 +15,7 @@
     = @event.location
   - if current_user
     = link_to 'Edit', edit_event_path(@event), class: "btn btn-info btn-sm"
+    &nbsp;
     = link_to 'Delete', @event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm"
   %br
   = link_to 'Back', events_path
@@ -23,16 +24,10 @@
     %h3 Confirm now:
     - @guest ||= @event.guests.new
     = render partial: 'guests/form'
-  %hr
-  %h3 Who's coming?
-  %p.muted-text
-    = pluralize(@event.guests.count, 'guest')
-    attending so far...
-  %br
   %hr/
   - if current_user
-    - if @event.guests.any?
-      = render partial: 'guests/guest', collection: @event.guests
-    - else
-      %p Well, so far, no one...
-      %p Oh...you better start inviting people...
+    %h3 Who's coming?
+    %p.muted-text
+      = pluralize(@event.guests.count, 'guest')
+      attending so far...
+    %br
