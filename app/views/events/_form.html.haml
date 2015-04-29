@@ -1,39 +1,35 @@
-= form_for(@event) do |f|
-  - if @event.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@event.errors.count, "error")
-        prohibited this event from being saved:
-      %ul
-        - @event.errors.full_messages.each do |message|
-          %li= message
-  .field
-    = f.label :title
-    %br/
-    = f.text_field :title
-  .field
-    = f.label :description
-    %br/
-    = f.text_area :description
-  .field
-    = f.label :theme
-    %br/
-    = f.text_field :theme
-  .field
-    = f.label :date
-    %br/
-    = f.datetime_select :date
-  .field
-    = f.label :host
-    %br/
-    = f.text_field :host
-  .field
-    = f.label :location
-    %br/
-    = f.text_area :location
-  .field
-    = f.label :image
-    %br/
-    = f.text_field :image
-  .actions
-    = f.submit
+.well.bs-component
+  = form_for @event, :html => {:class => 'form-horizontal'} do |f|
+    - if @event.errors.any?
+      #error_explanation
+        %h2
+          = pluralize(@event.errors.count, "error")
+          prohibited this event from being saved:
+        %ul
+          - @event.errors.full_messages.each do |message|
+            %li= message
+    %fieldset
+      %legend Event
+      .form-group
+        %label.col-lg-2.control-label Title
+        .col-lg-10
+          = f.text_field :title, class: "form-control"
+      .form-group
+        %label.col-lg-2.control-label Description
+        .col-lg-10
+          = f.text_area :description, class: "form-control", rows: "3"
+      .form-group
+        %label.col-lg-2.control-label Host
+        .col-lg-10
+          = f.text_field :host, class: "form-control"
+      .form-group
+        %label.col-lg-2.control-label Location
+        .col-lg-10
+          = f.text_field :location, class: "form-control"
+      .form-group
+        %label.col-lg-2.control-label Date:
+        .col-lg-10
+          = f.datetime_select :date
+      .form-group
+        .col-lg-10.col-lg-offset-2
+          = f.submit nil , :class => "button btn btn-primary"
