@@ -25,7 +25,11 @@
     = render partial: 'guests/form'
   %hr
   %h3 Who's coming?
+  %p.muted-text
+    = pluralize(@event.guests.count, 'guest')
+    attending so far...
   %br
+  %hr/
   - if current_user
     - if @event.guests.any?
       = render partial: 'guests/guest', collection: @event.guests
