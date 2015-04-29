@@ -8,7 +8,7 @@
     = @event.description
   %p
     %strong Date:
-    = @event.date
+    @event.date.strftime("%I:%M%p, %A, %B %d, %Y")
   %p
     %strong Host:
     = @event.host
