@@ -26,12 +26,13 @@
                 Account
                 %span.caret
               %ul.dropdown-menu{"aria-labelledby" => "themes"}
-                %li
-                  %a{:href => "../"} Account info
-                %li.divider
-                %li
-                  - if user_signed_in?
+                - if user_signed_in?
+                  %li
+                    %a{:href => "../"} Account info
+                  %li.divider
+                  %li
                     = link_to "Sign out", destroy_user_session_path, method: :delete
-                  - else
+                - else
+                  %li
                     = link_to "Log in", events_path
 
