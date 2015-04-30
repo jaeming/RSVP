@@ -2,7 +2,7 @@
   %p.text-success#notice= notice
   %h2
     Your Events &nbsp; &nbsp; &nbsp;
-    = link_to 'Create New Event', new_event_path, class: "btn btn-success btn-xs"
+    = link_to 'Create New Event', new_event_path, class: "btn btn-success btn-xs", data: {no_turbolink: true}
     %hr/
   - @events.each do |event|
     = link_to(event) do

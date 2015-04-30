@@ -12,6 +12,7 @@ $(document).ready ->
 
   setTimeout hideNotice, 3000
 
+
   # Location search functionality
   input = document.getElementById('location')
   options = types: [

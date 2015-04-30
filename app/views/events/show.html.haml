@@ -14,7 +14,7 @@
     %strong Location:
     = @event.location
   - if current_user
-    = link_to 'Edit', edit_event_path(@event), class: "btn btn-info btn-sm"
+    = link_to 'Edit', edit_event_path(@event), class: "btn btn-info btn-sm", data: {no_turbolink: true}
     &nbsp;
     = link_to 'Delete', @event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm"
   %br
